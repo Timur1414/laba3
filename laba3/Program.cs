@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.Runtime.InteropServices;
 
 namespace laba3
 {
@@ -9,9 +7,9 @@ namespace laba3
     {
         static void Main(string[] args)
         {
-            //Vector a = new Vector(1, 2, 3);
-            //Vector b = new Vector(2, 4, 6);
-            //Console.WriteLine(a * 2 == b);
+            Vector a = new Vector(1, 2, 3);
+            Vector b = new Vector(2, 4, 6);
+            Console.WriteLine(a + a == b);
 
             //List<Car> cars = new List<Car>();
             //cars.Add(new Car("A", "a", 100));
@@ -19,10 +17,10 @@ namespace laba3
             //CarsCatalog catalog = new CarsCatalog(cars);
             //Console.WriteLine(catalog[0]);
 
-            CurrencyUSD currencyFrom = new CurrencyUSD(10);
-            CurrencyRUB currencyTo = new CurrencyRUB(0);
-            currencyTo = currencyFrom;
-            Console.WriteLine(currencyTo.Value);
+            //CurrencyUSD currencyFrom = new CurrencyUSD(10);
+            //CurrencyRUB currencyTo = new CurrencyRUB(0);
+            //currencyTo = currencyFrom;
+            //Console.WriteLine(currencyTo.Value);
         }
 
         public struct Vector
@@ -38,18 +36,15 @@ namespace laba3
 
             public static Vector operator +(Vector a, Vector b)
             {
-                Vector res = new Vector(a.x + b.x, a.y + b.y, a.z + b.z);
-                return res;
+                return new Vector(a.x + b.x, a.y + b.y, a.z + b.z);
             }
             public static Vector operator *(Vector a, Vector b)
             {
-                Vector res = new Vector(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
-                return res;
+                return new Vector(a.y * b.z - a.z * b.y, a.z * b.x - a.x * b.z, a.x * b.y - a.y * b.x);
             }
             public static Vector operator *(Vector a, int k)
             {
-                Vector res = new Vector(a.x * k, a.y * k, a.z * k);
-                return res;
+                return new Vector(a.x * k, a.y * k, a.z * k);
             }
             public static bool operator ==(Vector a, Vector b)
             {
@@ -75,16 +70,16 @@ namespace laba3
 
         class Car : IEquatable<Car>
         {
+            public string Name { get; private set; }
+            public string Engine { get; private set; }
+            public int MaxSpeed { get; private set; }
+
             public Car(string name, string engine, int maxSpeed)
             {
                 this.Name = name;
                 this.Engine = engine;
                 this.MaxSpeed = maxSpeed;
             }
-
-            public string Name { get; private set; }
-            public string Engine { get; private set; }
-            public int MaxSpeed { get; private set; }
             
             public override string ToString()
             {
